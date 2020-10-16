@@ -8,11 +8,7 @@ var cors = require('cors')
 var app = express()
  
 app.use(cors())
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
+ 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,7 +36,7 @@ var setpermission = function (req, res, next) {
 }
 
 app.get('/', function (req, res, next) {
-  res.render('index', { title: 'Donation Box Collection API' });
+  res.send("Donation Box Collection API");
 });
 
 app.post('/locations',setpermission, function (req, res, next) {
@@ -65,7 +61,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
 });
 
 module.exports = app;
